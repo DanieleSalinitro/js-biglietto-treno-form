@@ -1,5 +1,5 @@
 let elUserName = document.getElementById('username');
-let elUserKm = parseInt(document.getElementById('userkm'));
+let elUserKm = document.getElementById('userkm');
 let elRangeAge = document.getElementById('range-age');
 let elButton = document.getElementById('btn-show');
 let elButtonClear = document.getElementById('btn-clear');
@@ -8,58 +8,52 @@ let elname = document.querySelector('.ds-namepass');
 let elticket = document.querySelector('.ds-ticket');
 let elcarriage = parseInt(document.querySelector('.ds-carriage'));
 let elCpCode = parseInt(document.querySelector('.ds-cpcode'));
-let elprice = parseInt(document.querySelector('.ds-price'));
-
-const priceKm = 0.21;
-const discountJunior = 0.2;
-const discountSenior = 0.4;
-let price = elUserKm * priceKm;
-let discount = 0;
-let finalPrice;
-
+let elprice = document.querySelector('.ds-price');
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 elButton.addEventListener('click', function(){
-    if (!isNaN(elUserKm)){
-        if (elRangeAge.value = 'junior') {
-            discount = price * discountJunior;
-        } else if (elRangeAge.value = 'senior') {
-            discount = price * discountSenior;
-        } 
-        finalPrice= price - discount;
-        document.querySelector("ds-train-price").innerHTML = `${finalPrice.toFixed(2)} €`;
-    } else{
-        alert(`ERRORE - Inserire valori numerici`);
-    }
+    userKm = parseInt(elUserKm.value);
+    userName = elUserName.value;
+    rangeAge = elRangeAge.value;
+    console.log(userKm, rangeAge);
+    const priceKm = 0.21;
+    const discountJunior = 0.2;
+    const discountSenior = 0.4;
+    let price = userKm * priceKm;
+    let discount = 0;
+    let finalPrice;
+    
+
+        if (!isNaN(userKm)){
+
+            if (rangeAge == 'junior') {
+                discount = price * discountJunior;
+                document.querySelector(".ds-ticket").innerHTML = `Biglietto FrecciaYoung` ;
+
+            } else if (rangeAge == 'senior') {
+                discount = price * discountSenior;
+                document.querySelector(".ds-ticket").innerHTML = `Biglietto FrecciaSenior` ;
+            } else{
+                discount=0;
+                document.querySelector(".ds-ticket").innerHTML = `Biglietto intero` ;
+            }
+            finalPrice= price - discount;
+            document.querySelector(".ds-train-price").innerHTML = `${finalPrice.toFixed(2)} €`;
+            document.querySelector(".ds-namepass").innerHTML = userName;
+            document.querySelector(".ticket-show").classList.remove('d-none');
+            document.querySelector(".ds-carriage").innerHTML = randomNumber(1,25);
+            document.querySelector(".ds-cpcode").innerHTML = randomNumber(10000,99999);
+        } else{
+            alert(`ERRORE - Inserire valori numerici`);
+        }
+})
+
+elButtonClear.addEventListener('click', function(){
+    elUserName.value="";
+    elRangeAge.value="";
+    elUserKm.value="";
+    document.querySelector(".ticket-show").classList.add('d-none');
 })
 
 
-
-
-// let elTesto = document.getElementById('testo');
-
-// let elColore = document.getElementById('colore');
-
-// let elForma = document.getElementById('forma');
-
-// let elButton = document.querySelector('.btn.btn-success');
-
-// // console.log(elTesto, elColore, elForma, elButton);
-
-// let elBox = document.querySelector('.box');
-// //console.log(elBox);
-
-
-// elButton.addEventListener('click', function(){
-//     // console.log('hai cliccato il bottone');
-//     const testo = elTesto.value;   
-//     const colore = elColore.value;
-//     const forma = elForma.value;
-//     console.log(testo, colore, forma);
-//     const formaClass =  (forma === 'circle') ? 'rounded-circle' : '';
-// //   'rounded-circle'
-//     elBox.innerHTML = testo;
-//     // elBox.className = '';
-//     elBox.className = 'box '+ colore +' '+formaClass;
-//     // elBox.classList.add(colore);
-//     // elBox.classList.remove('d-none');
-    
-// });

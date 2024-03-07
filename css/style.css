@@ -19,5 +19,5 @@ body{
     background-color: #C3C3C3;
 }
 #btn-show:hover, #btn-clear:hover{
-    border-color: orange;
+    border-color: orange ;
 }
