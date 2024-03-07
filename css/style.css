@@ -1,0 +1,23 @@
+body{
+
+    background-color: #B71446;
+    color: white;
+}
+.wrapper{
+    height: 100vh;
+    overflow: auto;
+}
+.gapped{
+    gap: 50px;
+}
+.small-gap{
+    gap: 25px;
+}
+
+#btn-show, #btn-clear{
+    color: #B71446;
+    background-color: #C3C3C3;
+}
+#btn-show:hover, #btn-clear:hover{
+    border-color: orange;
+}
